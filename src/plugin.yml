@@ -1,0 +1,10 @@
+name: Schild
+author: Justin_SGD
+version: 3.0
+main: de.schild.SchildMain
+commands:
+  schild:
+    description: Editiere ein Schild.
+  reloadschild:
+    description: Load die Config neu.
+    aliases: [schildreload, reloadconfig]
