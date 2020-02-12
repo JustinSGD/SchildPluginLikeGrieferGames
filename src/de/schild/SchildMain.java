@@ -2,11 +2,9 @@ package de.schild;
 
 import de.schild.commands.SchildCommand;
 import de.schild.commands.SchildReloadCommand;
-import de.schild.data.Data;
 import de.schild.file.FileManager;
 import de.schild.utils.*;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -30,31 +28,30 @@ public class SchildMain extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("§7======================================");
         Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bStatus: §aenabled");
-        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bVersion: §43.0");
-        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bmade by §4Justin_SGD");
+        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bVersion: §6" + getDescription().getVersion());
+        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bDeveloper: §6" + getDescription().getAuthors());
         Bukkit.getConsoleSender().sendMessage("§7======================================");
 
         if(getServer().getPluginManager().getPlugin("PlotSquared") !=null) {
-            if(getServer().getPluginManager().getPlugin("PlotSquared").isEnabled()) {
-                File main = new File("plugins/Schild");
-                if (!main.exists()) {
-                    main.mkdirs();
-                }
-                setupSignEdit();
-                loadFile();
-                loadCommands();
+            if (getServer().getPluginManager().getPlugin("PlotSquared").isEnabled()) {
+                log("§8[§eSchild§8] §fPlotSquared was found and hooked.");
             }
-        } else {
-            Bukkit.getPluginManager().disablePlugin(this);
-            log("§cYou must have §ePlotSquared §cinstalled!");
         }
+
+        File main = new File("plugins/Schild");
+        if (!main.exists()) {
+            main.mkdirs();
+        }
+        loadFile();
+        setupSignEdit();
+        loadCommands();
     }
 
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage("§7======================================");
         Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bStatus: §cdisabled");
-        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bVersion: §63.0");
-        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bDeveloper: §6Justin_SGD");
+        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bVersion: §6" + getDescription().getVersion());
+        Bukkit.getConsoleSender().sendMessage("§eSchild §7| §bDeveloper: §6" + getDescription().getAuthors());
         Bukkit.getConsoleSender().sendMessage("§7======================================");
     }
 
@@ -77,12 +74,15 @@ public class SchildMain extends JavaPlugin {
         String version;
         try {
             version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             return false;
         }
         log("§aYour server is running version §e" + version);
-        if (version.equals("v1_8_R3")) {
+        if (version.equals("v1_8_R1")) {
+            signedit = new SignEdit_1_8_R1();
+        } else if (version.equals("v1_8_R2")) {
+            signedit = new SignEdit_1_8_R2();
+        } else if (version.equals("v1_8_R3")) {
             signedit = new SignEdit_1_8_R3();
         } else if(version.equals("v1_9_R1")) {
             signedit = new SignEdit_1_9_R1();
