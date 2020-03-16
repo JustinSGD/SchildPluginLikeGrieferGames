@@ -13,11 +13,9 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutOpenSignEditor;
 import net.minecraft.server.v1_8_R3.PacketPlayOutUpdateSign;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
 import net.minecraft.server.v1_8_R3.TileEntitySign;
-import org.bukkit.event.EventHandler;
 
 public class SignEdit_1_8_R3 implements SignEdit {
 
-    @EventHandler
     public void editSign(Player player, Sign sign) {
         IChatBaseComponent[] lines = new IChatBaseComponent[4];
         for (int i = 0; i < sign.getLines().length; i++) {

@@ -11,6 +11,7 @@ public class Data {
 
     public static String RELOAD = "schild.reload";
     public static String SCHILDCOMMAND = "schild.schild";
+    public static String SCHILDCOLOR = "schild.color";
     public static String NOPLOTEDITPERM = "schild.owner";
     public static String NOPLOTOWNEREDITPERM = "schild.owner";
 

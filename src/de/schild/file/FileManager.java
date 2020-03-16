@@ -23,6 +23,7 @@ public class FileManager {
 
             file.setValue("ReloadPermission", Data.RELOAD);
             file.setValue("SchildPermission", Data.SCHILDCOMMAND);
+            file.setValue("SchildColor", Data.SCHILDCOLOR);
             file.setValue("NoPlotEditPermission", Data.NOPLOTEDITPERM);
             file.setValue("NoPlotOwnerEditPermission", Data.NOPLOTOWNEREDITPERM);
             file.save();
@@ -39,6 +40,7 @@ public class FileManager {
 
         Data.RELOAD = file.getString("ReloadPermission");
         Data.SCHILDCOMMAND = file.getString("SchildPermission");
+        Data.SCHILDCOLOR = file.getString("SchildColor");
         Data.NOPLOTEDITPERM = file.getString("NoPlotEditPermission");
         Data.NOPLOTOWNEREDITPERM = file.getString("NoPlotOwnerEditPermission");
     }

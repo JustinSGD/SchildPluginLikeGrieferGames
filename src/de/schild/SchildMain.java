@@ -3,8 +3,10 @@ package de.schild;
 import de.schild.commands.SchildCommand;
 import de.schild.commands.SchildReloadCommand;
 import de.schild.file.FileManager;
+import de.schild.listener.SignEditListener;
 import de.schild.utils.*;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -45,6 +47,7 @@ public class SchildMain extends JavaPlugin {
         loadFile();
         setupSignEdit();
         loadCommands();
+        loadListener();
     }
 
     public void onDisable() {
@@ -57,6 +60,11 @@ public class SchildMain extends JavaPlugin {
 
     public static SchildMain getPlugin() {
         return plugin;
+    }
+
+    private void loadListener() {
+        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
+        pluginManager.registerEvents(new SignEditListener(), this);
     }
 
     private void loadCommands() {
